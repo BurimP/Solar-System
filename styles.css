@@ -1,0 +1,658 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --base-value: 0.9;
+  --sun-size: calc(var(--base-value) * 140);
+  --mercury-size: 8;
+  --mercury-radius: calc(var(--mercury-size) / 2);
+  --mercury-orbit-radius: calc(var(--sun-size) * var(--base-value) + 197);
+  --venus-size: 12.1;
+  --venus-radius: calc(var(--venus-size) / 2);
+  --venus-orbit-radius: calc(
+    var(--base-value) * var(--sun-size) + (var(--mercury-orbit-radius) / 2) +
+      248
+  );
+  --earth-size: 12.74;
+  --earth-radius: calc(var(--earth-size) / 2);
+  --earth-orbit-radius: calc(
+    var(--base-value) * var(--sun-size) + (var(--venus-orbit-radius) / 2) + 289
+  );
+  --moon-orbit-radius: calc(var(--earth-radius) * var(--base-value) + 25.6);
+  --moon-size: 7;
+  --moon-radius: calc(var(--moon-size) / 2);
+  --mars-size: 9.68;
+  --mars-radius: calc(var(--mars-size) / 2);
+  --mars-orbit-radius: calc(
+    var(--base-value) * var(--sun-size) + (var(--earth-orbit-radius) / 2) + 368
+  );
+  --mars-moon-1-orbit-radius: calc(
+    var(--base-value) * var(--mars-size) + (var(--mars-moon-2-orbit-radius) / 2) +
+      23.46
+  );
+  --mars-moon-1-size: 3.1;
+  --mars-moon-1-radius: calc(var(--mars-moon-1-size) / 2);
+  --mars-moon-2-orbit-radius: calc(var(--mars-size) + 9.3);
+  --mars-moon-2-size: 5.9;
+  --mars-moon-2-radius: calc(var(--mars-moon-2-size)-2);
+
+  /* --comet-orbit-radius: 400; */
+  /* --comet-orbit-2-radius: 200; */
+  --comet-size: 9;
+  --comet-radius: calc(var(--comet-size) / 2);
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-image: radial-gradient(rgb(16, 16, 26), rgb(9, 9, 18));
+  background-color: white;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+nav {
+  position: absolute;
+  left: 0.5%;
+  top: 1%;
+  background-color: rgba(250, 250, 250, 0.2);
+  width: 15%;
+  padding: 0.1%;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+
+.button {
+  text-align: center;
+  cursor: pointer;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+nav label {
+  color: white;
+  font-size: 20px;
+  display: block;
+  cursor: pointer;
+}
+
+.contents {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  padding: 5%;
+  display: block;
+  color: white;
+}
+
+input {
+  display: none;
+}
+
+#btn:checked + .contents {
+  display: block;
+}
+
+[id^="btn"]:checked + .contents {
+  display: block;
+}
+
+h3 {
+  font-size: 1.125rem;
+  color: antiquewhite;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: absolute;
+  left: 25%;
+  padding-bottom: 20px;
+  top: 2%;
+}
+
+.paragraph {
+  color: antiquewhite;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: absolute;
+  font-size: 1rem;
+  overflow: hidden;
+  top: 5%;
+  padding: 20px;
+  max-height: 100%;
+}
+
+.numbers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pause-btn {
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  padding: 0.3% 2% 0.3% 2%;
+  border: 2px solid white;
+  border-radius: 15px;
+  background: rgb(191, 191, 191);
+  color: black;
+}
+
+.pause-btn:hover {
+  transform: scale(1.1);
+}
+
+.play-btn {
+  display: none;
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  padding: 0.3% 2.26% 0.3% 2.26%;
+  border: 2px solid white;
+  border-radius: 15px;
+  background: rgb(191, 191, 191);
+  color: black;
+}
+
+.play-btn:hover {
+  transform: scale(1.1);
+}
+
+form {
+  background: red;
+}
+#speed {
+  background: blue;
+  height: 50px;
+  width: 50px;
+}
+
+.info {
+  height: 100px;
+  width: 100px;
+  background-color: white;
+  color: black;
+}
+
+.range {
+  transform: translate(50%, 200px);
+  height: 200px;
+  width: 200px;
+  background-color: antiquewhite;
+}
+
+.sun {
+  height: calc(var(--sun-size) * 1px);
+  width: calc(var(--sun-size) * 1px);
+  background-image: linear-gradient(rgb(252, 252, 82), rgb(160, 105, 2));
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50vh - calc(var(--sun-size) / 2 * 1px));
+  left: calc(60% - calc(var(--sun-size) / 2 * 1px));
+  animation: sun 2s linear infinite;
+  z-index: 10;
+}
+
+.sun-label {
+  display: none;
+}
+
+.mercury-orbit {
+  background: transparent;
+  height: calc(var(--mercury-orbit-radius) * 1px);
+  width: calc(var(--mercury-orbit-radius) * 1px);
+  border: 1px solid grey;
+  border-radius: 50%;
+  position: absolute;
+  inset-inline-start: calc(60% - var(--mercury-orbit-radius) / 2 * 1px);
+  inset-block-start: calc(50% - var(--mercury-orbit-radius) / 2 * 1px);
+  animation: mercury 7.3s linear infinite;
+  z-index: -7;
+}
+
+.mercury {
+  width: calc(var(--mercury-size) * 1px);
+  height: calc(var(--mercury-size) * 1px);
+  position: absolute;
+  background-image: linear-gradient(rgb(179, 178, 178), rgb(80, 80, 80));
+  border-radius: 50%;
+  inset-inline-start: calc(50%);
+  inset-block-start: calc(var(--mercury-radius) * -1px);
+  z-index: 9;
+}
+.mercury-label {
+  display: none;
+}
+
+.venus-orbit {
+  background: transparent;
+  height: calc(var(--venus-orbit-radius) * 1px);
+  width: calc(var(--venus-orbit-radius) * 1px);
+  border: 1px solid grey;
+  border-radius: 50%;
+  position: absolute;
+  inset-inline-start: calc(60% - var(--venus-orbit-radius) / 2 * 1px);
+  inset-block-start: calc(50% - var(--venus-orbit-radius) / 2 * 1px);
+  animation: venus 18.75s linear infinite;
+  z-index: -8;
+}
+
+.venus {
+  width: calc(var(--venus-size) * 1px);
+  height: calc(var(--venus-size) * 1px);
+  position: absolute;
+  background-image: linear-gradient(rgb(255, 203, 140), rgb(174, 124, 37));
+  border-radius: 50%;
+  inset-inline-start: calc(50%);
+  inset-block-start: calc(var(--venus-radius) * -1px);
+  z-index: 8;
+}
+
+.venus-label {
+  display: none;
+}
+
+.earth-orbit {
+  background: transparent;
+  height: calc(var(--earth-orbit-radius) * 1px);
+  width: calc(var(--earth-orbit-radius) * 1px);
+  border: 1px solid grey;
+  border-radius: 50%;
+  position: absolute;
+  inset-inline-start: calc(60% - var(--earth-orbit-radius) / 2 * 1px);
+  inset-block-start: calc(50% - var(--earth-orbit-radius) / 2 * 1px);
+  animation: earth-orbit 30s linear infinite;
+  z-index: -9;
+}
+
+.earth {
+  width: calc(var(--earth-size) * 1px);
+  height: calc(var(--earth-size) * 1px);
+  position: absolute;
+  background-image: linear-gradient(lightblue, blue);
+  border-radius: 50%;
+  left: calc(50% - var(--earth-radius) * 1px);
+  top: calc(var(--earth-radius) * -1 * 1px);
+  animation: earth 0.08s linear infinite;
+  z-index: 7;
+}
+
+.earth-label {
+  display: none;
+}
+
+.moon-orbit {
+  width: calc(var(--moon-orbit-radius) * 1px);
+  height: calc(var(--moon-orbit-radius) * 1px);
+  background: transparent;
+  border: 1px solid grey;
+  border-radius: 50%;
+  position: absolute;
+  inset-inline-start: calc(50% - calc(var(--moon-orbit-radius) / 2 * 1px));
+  inset-block-start: calc(0% - calc(var(--moon-orbit-radius) / 2 * 1px));
+  animation: moon-orbit 2.5s linear infinite;
+  z-index: -1;
+}
+
+.moon {
+  width: calc(var(--moon-size) * 1px);
+  height: calc(var(--moon-size) * 1px);
+  position: absolute;
+  background-image: linear-gradient(white, darkgrey);
+  border-radius: 50%;
+  left: calc(50% - var(--moon-radius) * 1px);
+  top: calc(var(--moon-radius) * -1 * 1px);
+  animation: moon 2.27s linear infinite;
+  z-index: 6;
+}
+
+.mars-orbit {
+  background: transparent;
+  height: calc(var(--mars-orbit-radius) * 1px);
+  width: calc(var(--mars-orbit-radius) * 1px);
+  border: 1px solid grey;
+  border-radius: 50%;
+  position: absolute;
+  inset-inline-start: calc(60% - var(--mars-orbit-radius) / 2 * 1px);
+  inset-block-start: calc(50% - var(--mars-orbit-radius) / 2 * 1px);
+  animation: mars-orbit 35s linear infinite;
+  z-index: -10;
+}
+
+.mars {
+  width: calc(var(--mars-size) * 1px);
+  height: calc(var(--mars-size) * 1px);
+  position: absolute;
+  background-image: linear-gradient(rgb(252, 161, 105), rgb(197, 76, 36));
+  border-radius: 50%;
+  left: calc(50% - var(--mars-radius) * 1px);
+  top: calc(var(--mars-radius) * -1 * 1px);
+  animation: mars 0.08s linear infinite;
+  z-index: 5;
+}
+
+.mars-label {
+  display: none;
+}
+
+.mars-moon-1-orbit {
+  width: calc(var(--mars-moon-1-orbit-radius) * 1px);
+  height: calc(var(--mars-moon-1-orbit-radius) * 1px);
+  background: transparent;
+  border: 1px solid grey;
+  border-radius: 50%;
+  position: absolute;
+  inset-inline-start: calc(
+    50% - calc(var(--mars-moon-1-orbit-radius) / 2 * 1px)
+  );
+  inset-block-start: calc(0% - calc(var(--mars-moon-1-orbit-radius) / 2 * 1px));
+  z-index: -1;
+  animation: mars-moon-1-orbit 5s linear infinite;
+}
+
+.mars-moon-1 {
+  width: calc(var(--mars-moon-1-size) * 1px);
+  height: calc(var(--mars-moon-1-size) * 1px);
+  position: absolute;
+  background-image: linear-gradient(white, darkgrey);
+  border-radius: 50%;
+  left: calc(50% - var(--mars-moon-1-radius) * 1px);
+  top: calc(var(--mars-moon-1-radius) * -1 * 1px);
+  z-index: 4;
+}
+
+.mars-moon-2-orbit {
+  width: calc(var(--mars-moon-2-orbit-radius) * 1px);
+  height: calc(var(--mars-moon-2-orbit-radius) * 1px);
+  background: transparent;
+  border: 1px solid grey;
+  border-radius: 50%;
+  position: absolute;
+  inset-inline-start: calc(
+    50% - calc(var(--mars-moon-2-orbit-radius) / 2 * 1px)
+  );
+  inset-block-start: calc(0% - calc(var(--mars-moon-2-orbit-radius) / 2 * 1px));
+  animation: mars-moon-2-orbit 6s linear infinite;
+  z-index: -1;
+}
+
+.mars-moon-2 {
+  width: calc(var(--mars-moon-2-size) * 1px);
+  height: calc(var(--mars-moon-2-size) * 1px);
+  position: absolute;
+  background-image: linear-gradient(rgb(157, 157, 157), rgb(216, 214, 214));
+  border-radius: 50%;
+  inset-inline-start: calc(50% - var(--mars-moon-2-radius) * 1px);
+  inset-block-start: calc(var(--mars-moon-2-radius) / 2 * -1 * 1px);
+  z-index: 3;
+}
+
+.comet {
+  height: calc(var(--comet-size) * 1px);
+  width: calc(var(--comet-size) * 1px);
+  background-color: rgb(124, 158, 185);
+  border-radius: 50%;
+  position: absolute;
+  top: 295px;
+  left: -420px;
+  box-shadow: -4px 0px 5px -1px rgb(187, 228, 255),
+    -10px 0px 5px 0px rgb(187, 228, 255), -15px 0px 5px -2px rgb(187, 228, 255);
+  z-index: 2;
+}
+
+.comet-and-orbit {
+  position: absolute;
+  top: calc(50% - 600px);
+  left: calc(60% - 600px);
+}
+
+.comet-orbit {
+  height: 450px;
+  width: 1200px;
+  padding: 0;
+  margin: 0;
+  fill: none;
+  stroke: grey;
+  position: absolute;
+  inset-inline-start: calc(0%);
+  inset-block-start: calc(0%);
+  transform: translate(-420px, 300px);
+  z-index: -11;
+}
+
+@keyframes sun {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes mercury {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes venus {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes earth {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes earth-orbit {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes moon {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moon-orbit {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes mars-orbit {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes mars-moon-1-orbit {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes mars-moon-2-orbit {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes comet-orbit {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes comet-orbit-2 {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes comet {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  :root {
+    --base-value: 0.5;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    overflow: hidden;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .sun {
+    height: calc(var(--sun-size) * 30px);
+    width: calc(var(--sun-size) * 30px);
+    background-image: linear-gradient(rgb(160, 105, 2), rgb(252, 252, 82));
+    top: -240%;
+    left: -198%;
+    animation: none;
+  }
+
+  .sun-label {
+    display: block;
+    color: white;
+    position: absolute;
+    left: 53%;
+    top: 100.5%;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 90%;
+    z-index: 200;
+  }
+
+  .mercury-orbit {
+    animation: none;
+    border: transparent;
+    z-index: -10;
+  }
+
+  .mercury {
+    width: calc(var(--mercury-size) * 3px);
+    height: calc(var(--mercury-size) * 3px);
+    inset-inline-start: 32%;
+  }
+  .mercury-label {
+    display: block;
+    color: white;
+    position: absolute;
+    left: 120%;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 90%;
+  }
+
+  .venus-orbit {
+    animation: none;
+    border: transparent;
+    inset-block-start: 50%;
+    z-index: -10;
+  }
+
+  .venus {
+    width: calc(var(--venus-size) * 3px);
+    height: calc(var(--venus-size) * 3px);
+
+    inset-inline-start: calc(38%);
+    inset-block-start: calc(var(--venus-radius) * -1px);
+  }
+  .venus-label {
+    display: block;
+    color: white;
+    position: absolute;
+    left: 120%;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 90%;
+  }
+
+  .earth-orbit {
+    animation: none;
+    border: transparent;
+    inset-block-start: 55%;
+    z-index: -10;
+  }
+
+  .earth {
+    animation: none;
+    width: calc(var(--earth-size) * 3px);
+    height: calc(var(--earth-size) * 3px);
+    left: 41%;
+    top: 10%;
+  }
+  .earth-label {
+    display: block;
+    color: white;
+    position: absolute;
+    left: 150%;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 90%;
+  }
+
+  .moon-orbit {
+    animation: none;
+    width: calc(var(--moon-orbit-radius) * 2.2px);
+    height: calc(var(--moon-orbit-radius) * 2.2px);
+
+    inset-inline-start: 38.5%;
+    inset-block-start: 7.5%;
+  }
+
+  .mars-orbit {
+    animation: none;
+    border: transparent;
+
+    inset-inline-start: -25%;
+    inset-block-start: 80%;
+  }
+
+  .mars {
+    width: calc(var(--mars-size) * 3px);
+    height: calc(var(--mars-size) * 3px);
+    inset-inline-start: 48%;
+    inset-block-start: -1%;
+  }
+  .mars-label {
+    display: block;
+    color: white;
+    position: absolute;
+    left: 250%;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 90%;
+  }
+
+  .mars-moon-1-orbit {
+    animation: none;
+    width: calc(var(--mars-moon-1-orbit-radius) * 2.5px);
+    height: calc(var(--mars-moon-1-orbit-radius) * 2.5px);
+    inset-inline-start: 43%;
+    inset-block-start: -5.5%;
+  }
+  .mars-moon-1 {
+    width: calc(var(--mars-moon-1-size) * 2px);
+    height: calc(var(--mars-moon-1-size) * 2px);
+  }
+
+  .mars-moon-2-orbit {
+    animation: none;
+    width: calc(var(--mars-moon-2-orbit-radius) * 2.5px);
+    height: calc(var(--mars-moon-2-orbit-radius) * 2.5px);
+    inset-inline-start: 46.5%;
+    inset-block-start: -2.2%;
+  }
+
+  .comet-and-orbit {
+    display: none;
+  }
+}

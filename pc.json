@@ -1,0 +1,96 @@
+{
+    "system": {
+        "units": {
+            "ly": "light year",
+            "km": "kilometers",
+            "d": "days",
+            "h": "hours",
+            "y": "years",
+            "au": "astronomical units"
+        },
+        "units_conversion": {
+            "au": {
+                "km": 149597870.7 
+            }
+        },
+        "name": "Proxima Centauri",
+        "distance_from_sun": {
+            "value": 4.2465,
+            "unit": "ly"
+        },
+        "stars": [
+            {
+                "name": "Proxima Centauri",
+                "info": "Proxima Centauri is a small, low-mass star located 4.2465 light-years (1.3020 pc) away from the Sun in the southern constellation of Centaurus. Its Latin name means the 'nearest [star] of Centaurus'. It was discovered in 1915 by Robert Innes and is the nearest-known star to the Sun. With a quiescent apparent magnitude 11.13, it is too faint to be seen with the unaided eye. Proxima Centauri is a member of the Alpha Centauri star system, being identified as component Alpha Centauri C, and is 2.18° to the southwest of the Alpha Centauri AB pair. It is currently 12,950 AU (0.2 ly) from AB, which it orbits with a period of about 550,000 years. Proxima Centauri is a red dwarf star with a mass about 12.5% of the Sun's mass (M☉), and average density about 33 times that of the Sun.",
+                "diameter": {
+                    "value": 214553.88,
+                    "unit": "km"
+                },
+                "rotation": {
+                    "value": 82.6,
+                    "unit": "d"
+                }
+            }
+        ],
+        "planets": [
+            {
+                "name": "Proxima Centauri B",
+                "info": "Proxima Centauri b, or Alpha Centauri Cb, orbits the star at a distance of roughly 0.05 AU (7.5 million km) with an orbital period of approximately 11.2 Earth days. Its estimated mass is at least 1.17 times that of the Earth. Moreover, the equilibrium temperature of Proxima Centauri b is estimated to be within the range where water could exist as liquid on its surface; thus, placing it within the habitable zone of Proxima Centauri. The first indications of the exoplanet Proxima Centauri b were found in 2013 by Mikko Tuomi of the University of Hertfordshire from archival observation data.",
+                "orbit": {
+                    "distance": {
+                        "value": 0.049,
+                        "unit": "au"
+                    },
+                    "duration": {
+                        "value": 11.186,
+                        "unit": "d"
+                    }
+                },
+                "diameter": {
+                    "value": 16536,
+                    "unit": "km"
+                }
+            },{
+                "name": "Proxima Centauri C",
+                "info": "Proxima Centauri c (also called Proxima c or Alpha Centauri Cc) is an exoplanet candidate orbiting the red dwarf star Proxima Centauri, which is the closest star to the Sun and part of a triple star system. It is located approximately 4.2 light-years (1.3 parsecs; 40 trillion kilometres; 25 trillion miles) from Earth in the constellation of Centaurus, making it, Proxima b, and Proxima d the closest known exoplanets to the Solar System. Proxima Centauri c is a super-Earth or mini-Neptune about 7 times as massive as Earth, orbiting at roughly 1.49 AU (223 million km; 139 million mi) every 1,928 days (5.28 yr). Due to its large distance from Proxima Centauri, the exoplanet is uninhabitable, with an equilibrium temperature of approximately 39 K (−234.2 °C; −389.5 °F). The planet is not transiting its parent star from the point of view of an Earth-based observer",
+                "orbit": {
+                    "distance": {
+                        "value": 1.49,
+                        "unit": "au"
+                    },
+                    "duration": {
+                        "value": 1928,
+                        "unit": "d"
+                    }
+                },
+                "rings": {
+                    "radius": {
+                        "value": 357460,
+                        "unit": "km"
+                    }
+                },
+                "radius": {
+                    "value": 14016.2,
+                    "unit": "km"
+                }
+            },{
+                "name": "Proxima Centauri d",
+                "info": "Proxima Centauri d (also called Proxima d) is a candidate exoplanet orbiting the red dwarf star Proxima Centauri, the closest star to the Sun and part of the Alpha Centauri triple star system. Together with two other planets in the Proxima Centauri system, it is the closest known exoplanet to the Solar System, located approximately 4.2 light-years (1.3 parsecs; 40 trillion kilometres; 25 trillion miles) away in the constellation of Centaurus. The first signs of the exoplanet emerged as a weak 5.15-day signal in radial velocity data taken from the Very Large Telescope during a 2020 study on Proxima b's mass. This signal was formally proposed to be a candidate exoplanet by Faria et al. Proxima d is a sub-Earth at least one-quarter of the mass of Earth (or twice the mass of Mars), orbiting at roughly 0.029 AU (4.3 million km; 2.7 million mi) every 5.1 days.[2] It is the least massive and innermost known planet of the Proxima Centauri system. It is the least massive exoplanet detected with the radial velocity method as of 2022. Proxima d orbits too close to its star to be habitable—assuming an Earth-like reflectivity, its equilibrium temperature may reach 360 K (87 °C; 188 °F).",
+                "orbit": {
+                    "distance": {
+                        "value": 0.029,
+                        "unit": "au"
+                    },
+                    "duration": {
+                        "value": 5.1,
+                        "unit": "d"
+                    }
+                },
+                "radius": {
+                    "value": 5135.4,
+                    "unit": "km"
+                }
+            }
+        ]
+    }
+}

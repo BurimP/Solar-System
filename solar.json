@@ -1,0 +1,17 @@
+{
+  "planets": [
+    {
+      "id": "0",
+      "name": "Mercury",
+      "info": "Mercury is the nearest planet to the Sun"
+    },
+    {
+      "id": "1",
+      "name": "Venus"
+    },
+    {
+      "id": "2",
+      "name": "Earth"
+    }
+  ]
+}

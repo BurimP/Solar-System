@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="control">
+      <button class="play-btn" id="play">Play</button>
+      <button class="pause-btn" id="pause">Pause</button>
+    </div>
+    <div class="info"></div>
+
+    <div class="sun play-pause" onclick="planetName('Sun')">
+      <label class="sun-label">Sun: 1.39 million km</label>
+    </div>
+    <div class="earth-orbit play-pause" id="earth__orbit">
+      <div class="earth play-pause" onclick="planetName('Earth')">
+        <label class="earth-label">Earth: 12.742km</label>
+      </div>
+      <div class="moon-orbit play-pause">
+        <div class="moon play-pause" onclick="planetName('Moon')"></div>
+      </div>
+    </div>
+    <div class="venus-orbit play-pause">
+      <div class="venus play-pause" onclick="planetName('Venus')">
+        <label class="venus-label">Venus: 12.104km</label>
+      </div>
+    </div>
+    <div class="mercury-orbit play-pause">
+      <div class="mercury play-pause" onclick="planetName('Mercury')">
+        <label class="mercury-label">Mercury: 4.879km</label>
+      </div>
+    </div>
+    <div class="mars-orbit play-pause">
+      <div class="mars play-pause" onclick="planetName('Mars')">
+        <label class="mars-label">Mars: 6.779km</label>
+      </div>
+      <div class="mars-moon-1-orbit play-pause">
+        <div
+          class="mars-moon-1 play-pause"
+          onclick="planetName('Mars moon 1')"
+        ></div>
+      </div>
+      <div class="mars-moon-2-orbit play-pause">
+        <div
+          class="mars-moon-2 play-pause"
+          onclick="planetName('Mars moon 2')"
+        ></div>
+      </div>
+    </div>
+    <div class="comet-and-orbit">
+      <div class="comet-container">
+        <div
+          class="comet play-pause"
+          id="comet_2"
+          onclick="planetName('Comet')"
+        ></div>
+      </div>
+      <svg class="comet-orbit play-pause" id="ellipse_svg">
+        <path
+          d="M 450 200 C 250 250 250 350 450 400 C 600 450 900 450 1050 400 C 1250 350 1250 250 1050 200 C 900 150 600 150 450 200 "
+        />
+      </svg>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"
+      integrity="sha512-E378bwaeZf1nwXeJGIwTB58A5gPt5jFU3u6aTGja4ZdRFJeo/N/REKnBgNZOZlH6JdnOPO98vg2AnSGaNfCMFQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
